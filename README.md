@@ -1,4 +1,4 @@
-# Weibo_User
+# Description
 analysis posts of a Weibo user, and get a word cloud picture on the Web page (127.0.0.1:5000)
 
 # Usage
