@@ -9,4 +9,6 @@ then open a browser with IP adress: 127.0.0.1:5000
 input the user id of a Weibo User. 
     e.g.  Denglun ( 1865901305 )
 
+Then click the button to know more information about the person.
+
     
