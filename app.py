@@ -23,7 +23,7 @@ def get_user_info(uid):
     result = requests.get('https://m.weibo.cn/api/container/getIndex?type=uid&value={}'.format(uid))
     json_data = result.json()  # 获取繁华信息中json内容
     # 获取性别，微博中m表示男性，f表示女性
-    print(json_data)
+    print("json_data:",json_data)
     if json_data['data']['userInfo']['gender'] == 'm':
         gender = '男'
     elif json_data['data']['userInfo']['gender'] == 'f':
@@ -41,7 +41,7 @@ def get_user_info(uid):
     data = {
         'profile_image_url': json_data['data']['userInfo']['profile_image_url'], # 获取头像
         'containerid': json_data['data']['tabsInfo']['tabs'][1]['containerid'],  # 此字段在获取博文中需要
-        'userinfo': '<br>'.join(['{}:{}'.format(k, v) for (k,v) in userinfo.items()])
+        'userinfo': '\n'.join(['{}:{}'.format(k, v) for (k,v) in userinfo.items()])
     }
     return data
 
@@ -88,9 +88,9 @@ def generate_personas(uid, data_list):
         keywords[i[0]] = i[1]
 
     # 初始化图片
-    image = Image.open('./static/images/heart.png')
+    image = Image.open('./static/images/images.png')
     graph = np.array(image)
-    back_color = imread('./static/images/heart.png')  # 解析该图片
+    back_color = imread('./static/images/images.png')  # 解析该图片
     # 生成云图，这里需要注意的是WordCloud默认不支持中文，所以这里需要加载中文黑体字库
     wc = WordCloud(font_path='./static/fonts/simhei.ttf', background_color='white', max_words=300, mask=graph)
     wc.generate_from_frequencies(keywords)
@@ -119,7 +119,7 @@ def index():
         posts = get_all_post(uid, userinfo['containerid'])
         dest_img = generate_personas(uid, posts)
         userinfo['personas'] = dest_img
-        print(userinfo)
+        print("UserInfo",userinfo)
     return render_template('index.html', userinfo=userinfo)
 
 if __name__ == '__main__':

@@ -1,7 +1,9 @@
 body
 {
     background-color:#d0e4fe;
+    text-align:center
 }
+.abc{margin:0 auto}
 h1
 {
     color:orange;
@@ -11,7 +13,10 @@ p
 {
     font-family:"Times New Roman";
     font-size:20px;
+    text-align:center
 }
 div{
-    background-color:#b0c4de;
+    text-align:center;
+    margin:0 auto
 }
+
